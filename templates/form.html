@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ form.name }}</title>
+  </head>
+  <body>
+    <h1>{{ form.name }}</h1>
+    <p>{{ form.description }}</p>
+
+    <form method="POST" action="/submit_form/{{ form.id }}">
+      {% for field in form.fields %}
+      <label for="{{ field.name }}">{{ field.name }}</label><br />
+      {% if field.field_type == 'string' %}
+      <input type="text" name="{{ field.name }}" /><br /><br />
+      {% elif field.field_type == 'int' %}
+      <input type="number" name="{{ field.name }}" /><br /><br />
+      {% elif field.field_type == 'radio' %} {% for option in
+      field.options.split(',') %}
+      <input type="radio" name="{{ field.name }}" value="{{ option }}" />{{
+      option }}<br />
+      {% endfor %} {% elif field.field_type == 'checkbox' %} {% for option in
+      field.options.split(',') %}
+      <input type="checkbox" name="{{ field.name }}" value="{{ option }}" />{{
+      option }<br />
+      {% endfor %} {% endif %} {% endfor}
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

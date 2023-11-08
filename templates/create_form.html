@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Form</title>
+  </head>
+  <body>
+    <h1>Create a New Form</h1>
+    <form method="POST" action="{{ url_for('create_form') }}">
+      <label for="form_name">Form Name:</label>
+      <input type="text" name="form_name" required /><br /><br />
+      <label for="form_description">Form Description:</label>
+      <textarea name="form_description"></textarea><br /><br />
+      <button type="submit">Create Form</button>
+    </form>
+
+    <h2>Add Fields to the Form</h2>
+    <form method="POST" action="{{ url_for('add_field', form_id=form.id) }}">
+      <label for="field_name">Field Name:</label>
+      <input type="text" name="field_name" required /><br /><br />
+      <label for="field_type">Field Type:</label>
+      <select name="field_type" required>
+        <option value="string">String</option>
+        <option value="int">Integer</option>
+        <option value="date">Date</option>
+        <option value="radio">Radio</option>
+        <option value="checkbox">Checkbox</option></select
+      ><br /><br />
+      <label for="field_options"
+        >Field Options (comma-separated for radio/checkbox):</label
+      >
+      <input type="text" name="field_options" /><br /><br />
+      <button type="submit">Add Field</button>
+    </form>
+  </body>
+</html>

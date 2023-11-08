@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form List</title>
+  </head>
+  <body>
+    <h1>Available Forms</h1>
+    <ul>
+      {% for form in forms %}
+      <li>
+        <a href="{{ url_for('view_submissions', form_id=form.id) }}"
+          >{{ form.name }}</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('create_form') }}">Create New Form</a>
+    <br />
+    <a href="{{ url_for('login') }}">Login</a>
+  </body>
+</html>

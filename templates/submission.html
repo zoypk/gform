@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Submissions - {{ form.name }}</title>
+  </head>
+  <body>
+    <h1>Form Submissions - {{ form.name }}</h1>
+    <p>{{ form.description }}</p>
+
+    <table>
+      <tr>
+        {% for field in form.fields %}
+        <th>{{ field.name }}</th>
+        {% endfor %}
+      </tr>
+      {% for submission in submissions %}
+      <tr>
+        {% for field in form.fields %}
+        <td>
+          {% if field.field_type in ['string', 'int', 'date'] %} {{
+          submission.data[field.name] }} {% elif field.field_type == 'radio' %}
+          {{ submission.data[field.name] }} {% elif field.field_type ==
+          'checkbox' %} {% for option in field.options.split(',') %} {% if
+          option in submission.data[field.name] %} {{ option }}<br />
+          {% endif %} {% endfor %} {% endif %}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
